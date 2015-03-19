@@ -1,0 +1,5 @@
+import server
+
+URL="http://pac.bouillaguet.info/TP3"
+
+server.server = Server(URL)
