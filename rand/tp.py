@@ -4,6 +4,17 @@ import server
 
 nextR = 1
 
+# merci http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 def srand(seed):
     global nextR
     nextR = seed
@@ -23,33 +34,20 @@ print(param)
 IV_0 = param["IV"][0]
 IV_1 = param["IV"][1]
 
-# on commence le 15 mars 2015 à 00:00:00
-#bruteStart = 1426377600
-
-# on fini le jour après le rendu (Thu, 19 Mar 2015 00:00:00 GMT)
-# bruteEnd = 1426723200
-
-# IV1 (j'y suis allé à taton... je changeait la valeur en fonction de ce que je recevait !
-#IV qui marche
 
 # test
-# bruteStart = 590000000
-bruteStart  = 0
-bruteEnd    = 1426723200
+# on cherche a trouver une seed qui marche avec l'IV_0 et l'IV_1
+for i in range(2090000000, pow(2, 32)):
+    if(i%100000000 == 0):
+        print("Current i = " + str(i))
+    srand(i)
+    if(rand() == IV_0):
+        if(rand() == IV_1):
+            print(bcolors.OKGREEN + str(i) + bcolors.ENDC)
 
-
-# on cherche a trouver une seed qui marche avec l'IV 1
-# while bruteStart < 32768*2:
-#     srand(bruteStart)
-#     if(rand() == 29395):
-#         print(bruteStart)
-#     bruteStart += 1
-
+print(bcolors.WARNING + "aucune seed de trouve" + bcolors.ENDC)
+        
 # IV1 = 19350
-srand(19350)
-print(rand())
-srand(9004)
-print(rand())
 
 #9004, 29395
 
