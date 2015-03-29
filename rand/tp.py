@@ -25,6 +25,8 @@ def rand():
     return round((nextR/65536) % 32768)
 
 
+
+
 URL="http://pac.bouillaguet.info/TP3"
 link_param = "/rand/challenge/echallier"
 serverObj = server.Server(URL)
@@ -37,7 +39,7 @@ IV_1 = param["IV"][1]
 
 # test
 # on cherche a trouver une seed qui marche avec l'IV_0 et l'IV_1
-for i in range(2090000000, pow(2, 32)):
+for i in range(pow(2, 32)):
     if(i%100000000 == 0):
         print("Current i = " + str(i))
     srand(i)
@@ -47,21 +49,4 @@ for i in range(2090000000, pow(2, 32)):
 
 print(bcolors.WARNING + "aucune seed de trouve" + bcolors.ENDC)
         
-# IV1 = 19350
-
-#9004, 29395
-
-#while bruteStart < bruteEnd:
-# while True:
-#     nextToFind = round((bruteStart/65536) % 32768)
-#     print(nextToFind)
-#     if nextToFind == IV_0:
-#         print("IV0")
-#         print(bruteStart)
-#         break
-#     if nextToFind == IV_1:
-#         print("IV1")
-#         print(bruteStart)
-#         break
-#     bruteStart += 1
 
